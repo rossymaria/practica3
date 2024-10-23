@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Inscrito</title>
+</head>
+<body>
+    <h1>Editar Inscrito</h1>
+    <form action="{{ url_for('editar', id=inscrito.id) }}" method="POST">
+        Fecha: <input type="date" name="fecha" value="{{ inscrito.fecha }}" required><br>
+        Nombre: <input type="text" name="nombre" value="{{ inscrito.nombre }}" required><br>
+        Apellidos: <input type="text" name="apellidos" value="{{ inscrito.apellidos }}" required><br>
+        Turno: 
+        <select name="turno" required>
+            <option value="mañana" {% if inscrito.turno == 'mañana' %}selected{% endif %}>Mañana</option>
+            <option value="tarde" {% if inscrito.turno == 'tarde' %}selected{% endif %}>Tarde</option>
+            <option value="noche" {% if inscrito.turno == 'noche' %}selected{% endif %}>Noche</option>
+        </select><br>
+        Seminarios: <br>
+        <input type="checkbox" name="seminarios" value="Seminario 1" {% if 'Seminario 1' in inscrito.seminarios %}checked{% endif %}> Seminario 1<br>
+        <input type="checkbox" name="seminarios" value="Seminario 2" {% if 'Seminario 2' in inscrito.seminarios %}checked{% endif %}> Seminario 2<br>
+        <input type="checkbox" name="seminarios" value="Seminario 3" {% if 'Seminario 3' in inscrito.seminarios %}checked{% endif %}> Seminario 3<br>
+        <input type="submit" value="Guardar Cambios">
+    </form>
+    <br>
+    <a href="{{ url_for('lista_inscritos') }}">Regresar a la lista</a>
+</body>
+</html>
